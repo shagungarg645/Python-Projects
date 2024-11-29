@@ -1,0 +1,75 @@
+import random
+cards=['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+card_values={'A':1, '2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, '10':10, 'J':10, 'Q':10, 'K':10}
+print('''
+.------.            _     _            _    _            _    
+|A_  _ |.          | |   | |          | |  (_)          | |   
+|( \/ ).-----.     | |__ | | __ _  ___| | ___  __ _  ___| | __
+| \  /|K /\  |     | '_ \| |/ _' |/ __| |/ / |/ _' |/ __| |/ /
+|  \/ | /  \ |     | |_) | | (_| | (__|   <| | (_| | (__|   < 
+'-----| \  / |     |_.__/|_|\__,_|\___|_|\_\ |\__,_|\___|_|\_\
+      |  \/ K|                            _/ |                
+      '------'                           |__/  ''')
+
+def choose_card():
+    a=random.choice(cards)
+    return a
+def result(comp_score,current_score):
+    
+    if comp_score>21 or current_score>21:
+        game_over=True
+        if comp_score>21:
+            print("You win")
+        else:
+            print("You lose")
+
+    elif comp_score==current_score:
+        game_over=True
+        print("It's a draw")
+
+    elif comp_score>current_score:
+        game_over=True
+        print("You Lose")
+    
+    elif current_score>comp_score:
+        game_over=True
+        print("You win")
+
+game_over=False
+
+a=choose_card()
+b=choose_card()
+player_cards=[a,b]
+player_cards_score=[card_values[a], card_values[b]]
+current_score=sum(player_cards_score)
+c=choose_card()
+d=choose_card()
+comp_cards=[c,d]
+comp_cards_score=[card_values[c], card_values[d]]
+print("Computer's first card:",c)
+comp_score=sum(comp_cards_score)
+print("Your cards: ",player_cards,"   current score:",current_score)
+while not game_over:
+    
+    if current_score>21 or comp_score >21:
+        game_over=True
+        result(comp_score,current_score)
+    if comp_score<17:
+        N=choose_card()
+        comp_cards.append(N)
+        comp_cards_score.append(card_values[N])
+        comp_score+=card_values[N]
+
+    another=input("type 'y' to get another card, type 'n' to pass:  " ).lower()
+
+    if another=='y' and not current_score>21:
+        M=choose_card()
+        player_cards.append(M)
+        player_cards_score.append(card_values[M])
+        current_score+=card_values[M]
+        print("Your cards: ",player_cards, 'current_score: ',current_score)
+    
+    elif another=='n':
+        game_over=True
+        result(comp_score,current_score)
+
