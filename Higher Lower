@@ -1,0 +1,81 @@
+import random
+
+def game():
+    print('''
+        __  ___       __             
+       / / / (_)___ _/ /_  ___  _____
+      / /_/ / / __ '/ __ \/ _ \/ ___/
+     / __  / / /_/ / / / /  __/ /    
+    /_/ ///_/\__, /_/ /_/\___/_/     
+       / /  /____/_      _____  _____
+      / /   / __ \ | /| / / _ \/ ___/
+     / /___/ /_/ / |/ |/ /  __/ /    
+    /_____/\____/|__/|__/\___/_/      
+
+    ''')                                    
+
+    players={
+        'Taylor Alison Swift':{
+            'about':'singer-songwriter',
+            'country':'America',
+            'followers':283000000
+        },
+        'Lionel Messi':{
+            'about':'footballer who plays for Inter Miami',
+            'country':'Argentina',
+            'followers':504000000
+        },
+        'Virat Kohli':{
+            'about':'cricketer',
+            'country':'India',
+            'followers':271000000
+        },
+        'Bruno Mars':{
+            'about':' singer-songwriter',
+            'country':'America',
+            'followers':39600000
+        },
+        'Kevin De Bruyne':{
+            'about':'football player',
+            'country':'Belgium',
+            'followers':26300000
+        }
+
+    }
+    score=-1
+    current=0
+    player_A= random.choice(list(players.keys()))
+    while current>score:
+        print("Your score is: ", current)
+        if len(list(players.keys()))==1:
+            return "Your score is",current,"You win"
+        print('Compare A: ', player_A, ',',players[player_A]['about'], 'from', players[player_A]['country'])
+        print('''
+         _    __    
+        | |  / /____
+        | | / / ___/
+        | |/ (__  ) 
+        |___/____(_)
+        ''')
+        player_B= random.choice(list(players.keys()))
+        while player_A==player_B:
+            player_B= random.choice(list(players.keys()))
+
+        print('Against B: ',player_B, ',',players[player_B]['about'], 'from', players[player_B]['country'],'\n')
+
+        inp=input("Who has more followers. type 'A' or 'B': ").upper()
+
+        if inp=='A':
+            if players[player_A]['followers']>players[player_B]['followers']:
+                current+=1
+                del players[player_B]
+            
+        if inp=='B':
+            if players[player_B]['followers']>players[player_A]['followers']:
+                current+=1
+                del players[player_A]
+                player_A=player_B
+            
+        score+=1
+
+game()
