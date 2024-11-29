@@ -1,0 +1,113 @@
+import random
+print('''
+
+ _                                             
+| |                                            
+| |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+| '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+| | | | (_| | | | | (_| | | | | | | (_| | | | |
+|_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                    __/ |                      
+                   |___/                     
+      
+''')
+stages=['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+========='''
+]
+
+
+
+wordlist=['hamburger', 'strawberry', 'nimble', 'cockroach', 'broom', 'dice', 'perplexed', 'coaster', 'marriage', 'council', 'bald', 'atmosphere',
+'tumour', 'metal', 'pilot', 'teach', 'queen', 'parallel']
+choose1=random.choice(wordlist)
+
+chosen_word=''
+for i in choose1:
+    chosen_word+='_'
+print(chosen_word,"\n")
+
+game_over=False
+
+chosen_word=[]
+for i in choose1:
+    chosen_word.append('_')
+
+lives=6 
+
+while not game_over:
+    print(f"You have {lives}/6 chances left\n")
+    if lives==0:
+        print("You Lose😔\n")
+        print("The word was: ",choose1,"\n")
+        break
+    count=0
+    
+    guess=input("Guess a word: ").lower()
+    print("\n")
+    if guess in chosen_word:
+        print("\nThis letter has already been guessed!\n")
+        
+    for i in range(len(choose1)):
+        if choose1[i] == guess:
+            chosen_word[i]=guess
+            count+=1
+
+    for i in range(len(choose1)):
+        print(chosen_word[i],end='')
+    print("\n")
+
+    if '_' not in chosen_word:
+        print("You win!😁")
+        game_over=True
+
+    elif count== 0 and lives!=0:
+        lives-=1
+    print(stages[6-lives],'\n')
