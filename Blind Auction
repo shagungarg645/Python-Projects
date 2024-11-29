@@ -1,0 +1,28 @@
+print('''
+______  _  _             _    ___                _    _               
+| ___ \| |(_)           | |  / _ \              | |  (_)              
+| |_/ /| | _  _ __    __| | / /_\ \ _   _   ___ | |_  _   ___   _ __  
+| ___ \| || || '_ \  / _` | |  _  || | | | / __|| __|| | / _ \ | '_ \ 
+| |_/ /| || || | | || (_| | | | | || |_| || (__ | |_ | || (_) || | | |
+\____/ |_||_||_| |_| \__,_| \_| |_/ \__,_| \___| \__||_| \___/ |_| |_|
+                                                                      ''')
+d=True
+dic={}
+while d:
+    A=input("What is your name?: ")
+    B=int(input("What is your bid ? Rs. "))
+    dic[A]=B
+    C=input("Are there any other bidders? ")
+    if C=='no':
+        d=False
+    print('\n'*100)
+hi=0
+for i in dic:
+    if dic[i]>hi :
+        hi=dic[i]
+        name=i
+print(f"The winner is {name} with Bid of Rs.{hi}")
+
+
+
+
